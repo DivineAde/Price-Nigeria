@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react"; // Import useRef and useEffect
+import React, { useState, useRef, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import {
   UserIcon,
@@ -18,8 +18,8 @@ const Navbar = () => {
   const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [showSearchInput, setShowSearchInput] = useState(false); // State to control search input visibility
-  const searchInputRef = useRef(null); // Ref for the search input
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const searchInputRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -34,37 +34,69 @@ const Navbar = () => {
   };
 
   const toggleSearchInput = () => {
-    setShowSearchInput(!showSearchInput); // Toggle search input visibility
+    setIsSearchModalOpen(!isSearchModalOpen);
   };
 
-  // Handle clicks outside the search input
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         searchInputRef.current &&
         !searchInputRef.current.contains(event.target)
       ) {
-        setShowSearchInput(false); // Hide the input if clicked outside
+        setIsSearchModalOpen(false);
       }
     };
 
-    // event listener when the input is visible
-    if (showSearchInput) {
+    if (isSearchModalOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // Cleanup the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showSearchInput]);
+  }, [isSearchModalOpen]);
 
-  // dropdown content for now
   const dropdownContent = {
     prices: ["Price Trends", "Price Alerts", "Price Comparisons"],
     forum: ["Latest Discussions", "Popular Topics", "Ask a Question"],
     listings: ["New Listings", "Top Deals", "Featured Products"],
     analytics: ["Market Trends", "Sales Analytics", "User Insights"],
+  };
+
+  const SearchModal = ({ onClose }) => {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg transform transition-all duration-300 ease-in-out">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Search</h2>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+            >
+              <XMarkIcon className="size-6 text-gray-600" />
+            </button>
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-700"
+              autoFocus
+            />
+            <div className="mt-6 absolute top-[-38%] right-1">
+            <button
+              onClick={onClose}
+              className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
+            >
+              Search
+            </button>
+          </div>
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 size-5 text-gray-400" />
+          </div>
+          
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -113,24 +145,17 @@ const Navbar = () => {
 
             {/* Icons */}
             <div className="hidden md:flex items-center space-x-4">
-              <div className="flex items-center" ref={searchInputRef}>
-                {showSearchInput ? (
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    autoFocus // Automatically focus the input when it appears
-                  />
-                ) : (
-                  <MagnifyingGlassIcon
-                    className="size-6 text-black hover:text-gray-600 cursor-pointer"
-                    onClick={toggleSearchInput}
-                  />
-                )}
+              <div className="flex items-center">
+                <MagnifyingGlassIcon
+                  className="size-6 text-black hover:text-gray-600 cursor-pointer"
+                  onClick={toggleSearchInput}
+                />
               </div>
               <Avatar>
                 <AvatarImage src="" alt="@shadcn" />
-                <AvatarFallback>AD</AvatarFallback>
+                <AvatarFallback>
+                  NS
+                </AvatarFallback>
               </Avatar>
               <Link href={"/bookmark"} className="relative">
                 <BookmarkIcon className="size-6 text-black hover:text-gray-600 cursor-pointer" />
@@ -173,19 +198,10 @@ const Navbar = () => {
             <div className="px-4 pt-2 pb-4 border-t border-gray-200">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center">
-                  {showSearchInput ? (
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      autoFocus
-                    />
-                  ) : (
-                    <MagnifyingGlassIcon
-                      className="size-6 text-slate-800 hover:text-gray-600 cursor-pointer"
-                      onClick={toggleSearchInput}
-                    />
-                  )}
+                  <MagnifyingGlassIcon
+                    className="size-6 text-slate-800 hover:text-gray-600 cursor-pointer"
+                    onClick={toggleSearchInput}
+                  />
                 </div>
                 <Avatar>
                   <AvatarImage
@@ -202,6 +218,11 @@ const Navbar = () => {
           </div>
         )}
       </header>
+
+      {/* Search Modal */}
+      {isSearchModalOpen && (
+        <SearchModal onClose={() => setIsSearchModalOpen(false)} />
+      )}
     </>
   );
 };

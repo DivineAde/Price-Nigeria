@@ -1,14 +1,10 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-const images = [
-  '/pexels-heftiba-940302.jpg', 
-  '/pexels-ifreestock-566888.jpg',
-  '/pexels-reneasmussen-2544829.jpg',
-];
+const images = ["/pexels-heftiba-940302.jpg", "/pexels-ifreestock-566888.jpg"];
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +25,7 @@ const HeroSection = () => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <Image
@@ -58,7 +54,8 @@ const HeroSection = () => {
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-gray-200 mb-8 font-bold animate-fade-in-up delay-200">
-            Whether you're looking to check prices, join a vibrant community, or list your own offerings, we've got you covered.
+            Whether you're looking to check prices, join a vibrant community, or
+            list your own offerings, we've got you covered.
           </p>
 
           {/* Interactive Buttons */}
