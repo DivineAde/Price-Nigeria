@@ -60,24 +60,22 @@ const HeroSection = () => {
 
           {/* Interactive Buttons */}
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <Link
-              href="#"
-              className="bg-white flex items-center justify-center text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 animate-fade-in-up delay-400"
-            >
-              Check Prices
-            </Link>
-            <Link
-              href="#"
-              className="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300 animate-fade-in-up delay-600"
-            >
-              Join the Community
-            </Link>
-            <Link
-              href="#"
-              className="bg-white flex items-center justify-center text-blue-600 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 animate-fade-in-up delay-800"
-            >
-              List Your Offerings
-            </Link>
+            <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
+              <span className="relative z-10">Check prices</span>
+              <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            </button>
+
+            
+
+            <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
+              <span className="relative z-10">Join the Community</span>
+              <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            </button>
+
+            <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
+              <span className="relative z-10">Explore</span>
+              <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            </button>
           </div>
         </div>
       </div>

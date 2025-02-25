@@ -410,8 +410,12 @@ const FoodCollection = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-pink-500 to-green-400 bg-clip-text text-transparent uppercase tracking-wider">
+        Trending Products
+      </h1>
+      
       {/* Sort By Feature */}
-      <div className="mb-8 focus:ring-opacity-0">
+      <div className="my-8 focus:ring-opacity-0">
         <label htmlFor="sort" className="mr-2 text-gray-700">
           Sort By:
         </label>

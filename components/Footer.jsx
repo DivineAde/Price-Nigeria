@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12 mt-20">
+    <footer className="bg-green-800 text-white py-12 mt-20">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: About */}
           <div>
             <h3 className="text-lg font-semibold mb-4">About price.ng</h3>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-slate-300">
               price.ng is your trusted platform for comparing prices and finding the best deals on products and services in Nigeria.
             </p>
           </div>
@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section: Copyright and Social Media */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-white mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
             &copy; {new Date().getFullYear()} price.ng. All rights reserved.
           </p>
