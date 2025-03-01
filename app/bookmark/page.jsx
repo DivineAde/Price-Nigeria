@@ -4,7 +4,6 @@ import { useCart } from "../../context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 
-
 const ShoppingCart = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
 
@@ -19,9 +18,14 @@ const ShoppingCart = () => {
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         {cart.length < 1 ? (
           <div className="flex flex-col items-center justify-center h-[60vh]">
-            <h1>Bookmark is empty :(</h1>
-            <Link href="/" className="text-white bg-blue-600 px-3 py-1.5 rounded-md mt-1 font-medium hover:bg-blue-800">
-              Return Home
+            <h1 className="text-2xl font-bold text-red-600">
+              Bookmark is empty :(
+            </h1>
+            <Link
+              href="/"
+              className="text-white bg-green-600 px-3 py-1.5 rounded-3xl mt-1 font-medium hover:bg-green-800"
+            >
+              Home
             </Link>
           </div>
         ) : (

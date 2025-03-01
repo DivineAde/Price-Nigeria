@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
@@ -7,7 +7,7 @@ import {
   MagnifyingGlassIcon,
   Bars3Icon,
   XMarkIcon,
-  ShoppingBagIcon,
+  HeartIcon,
   ChevronDownIcon,
   BookmarkIcon,
 } from "@heroicons/react/24/solid";
@@ -63,8 +63,8 @@ const Navbar = () => {
     analytics: ["Market Trends", "Sales Analytics", "User Insights"],
   };
 
-  // Define which items should show the ChevronDownIcon
-  const showChevronItems = ["prices", "forum", "listings"]; // Add items that should show the chevron
+  // diplaying which items should show the ChevronDownIcon
+  const showChevronItems = ["prices", "forum", "listings"]; // items that should show the chevron
 
   const SearchModal = ({ onClose }) => {
     return (
@@ -164,12 +164,15 @@ const Navbar = () => {
                 />
               </div>
               <Avatar>
-                <AvatarImage src="" alt="@shadcn" />
-                <AvatarFallback>NS</AvatarFallback>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback></AvatarFallback>
               </Avatar>
               <Link href={"/bookmark"} className="relative">
-                <BookmarkIcon className="size-6 text-black hover:text-gray-600 cursor-pointer" />
-                <span className="text-white absolute top-[-10px] right-[-10px] bg-red-600 text-xs px-[8px] py-[2px] rounded-full font-bold">
+                <HeartIcon className="size-6 text-black hover:text-gray-600 cursor-pointer" />
+                <span className="text-white absolute top-[-10px] right-[-10px] bg-green-600 text-xs px-[8px] py-[2px] rounded-full font-bold">
                   {cart.length}
                 </span>
               </Link>

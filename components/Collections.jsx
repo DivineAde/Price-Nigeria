@@ -492,11 +492,11 @@ const FoodCollection = () => {
 
               {/* Add to Cart Button */}
               <button
-                className="w-full bg-black font-semibold text-white py-2 px-4 rounded-md hover:bg-slate-800 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="w-full bg-green-600 font-semibold text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 disabled={!item.available}
                 onClick={() => addToCart(item)} // Add item to bookmark 
               >
-                Bookmark
+                Add to favorite
               </button>
             </div>
           </div>
