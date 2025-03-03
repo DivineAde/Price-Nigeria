@@ -49,9 +49,9 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-12 relative">
+    <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
           What Our Users Say
         </h2>
         <div className="relative overflow-hidden">
@@ -61,23 +61,23 @@ const Testimonials = () => {
           >
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="w-full flex-shrink-0 p-4">
-                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="flex items-center mb-4">
+                <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-">
+                  <div className="flex items-center mb-6">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full mr-4"
+                      className="w-16 h-16 rounded-full mr-6 border-4 border-purple-200"
                     />
                     <div>
-                      <h3 className="text-lg font-semibold">
+                      <h3 className="text-xl font-semibold text-gray-800">
                         {testimonial.name}
                       </h3>
-                      <p className="text-sm text-gray-600">
-                        {testimonial.role}
-                      </p>
+                      <p className="text-sm text-purple-600">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700">{testimonial.content}</p>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    {testimonial.content}
+                  </p>
                 </div>
               </div>
             ))}
@@ -91,7 +91,7 @@ const Testimonials = () => {
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`h-3 rounded-full transition-all duration-300 ${
-                index === activeIndex ? "bg-slate-600 w-6" : "bg-slate-500 w-3"
+                index === activeIndex ? "bg-green-600 w-6" : "bg-green-300 w-3"
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

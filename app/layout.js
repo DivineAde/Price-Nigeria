@@ -19,9 +19,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased`}>
         <CartProvider>
-          <Navbar />
+          
             {children}
-          <Footer />
+          
         </CartProvider>
       </body>
     </html>

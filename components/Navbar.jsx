@@ -20,17 +20,24 @@ const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const searchInputRef = useRef(null);
+  const timeoutRef = useRef(null); // Ref for the delay timeout
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleMouseEnter = (item) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current); // Clear any existing timeout
+    }
     setHoveredItem(item);
   };
 
   const handleMouseLeave = () => {
-    setHoveredItem(null);
+    // Set a timeout to delay closing the dropdown
+    timeoutRef.current = setTimeout(() => {
+      setHoveredItem(null);
+    }, 300); // 300ms delay
   };
 
   const toggleSearchInput = () => {
@@ -63,8 +70,7 @@ const Navbar = () => {
     analytics: ["Market Trends", "Sales Analytics", "User Insights"],
   };
 
-  // diplaying which items should show the ChevronDownIcon
-  const showChevronItems = ["prices", "forum", "listings"]; // items that should show the chevron
+  const showChevronItems = ["prices", "forum", "listings"]; // Items that should show the chevron
 
   const SearchModal = ({ onClose }) => {
     return (
@@ -137,7 +143,11 @@ const Navbar = () => {
                     )}
                   </div>
                   {hoveredItem === item && (
-                    <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-md shadow-lg transition-opacity duration-300 ease-in-out">
+                    <div
+                      className="absolute top-full left-0 mt-2 w-52 bg-white rounded-md shadow-lg transition-opacity duration-300 ease-in-out"
+                      onMouseEnter={() => handleMouseEnter(item)} // Keep dropdown open
+                      onMouseLeave={handleMouseLeave} // Close dropdown when cursor leaves
+                    >
                       {dropdownContent[item].map((subItem) => (
                         <a
                           key={subItem}
@@ -163,13 +173,15 @@ const Navbar = () => {
                   onClick={toggleSearchInput}
                 />
               </div>
-              <Avatar>
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
-                <AvatarFallback></AvatarFallback>
-              </Avatar>
+              <Link href="/login">
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                  <AvatarFallback></AvatarFallback>
+                </Avatar>
+              </Link>
               <Link href={"/bookmark"} className="relative">
                 <HeartIcon className="size-6 text-black hover:text-gray-600 cursor-pointer" />
                 <span className="text-white absolute top-[-10px] right-[-10px] bg-green-600 text-xs px-[8px] py-[2px] rounded-full font-bold">

@@ -141,7 +141,7 @@ const BlogPost = () => {
   const relatedPosts = posts.filter((p) => p.id !== post.id);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 mt-16">
       <div className="container mx-auto px-4 py-12">
         {/* Back Button */}
         <Link
