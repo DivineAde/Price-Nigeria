@@ -18,7 +18,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative py-20 mt-16 h-screen flex items-center overflow-hidden">
+    <section className="relative py-20 h-screen flex items-center overflow-hidden">
       {/* Background Images with Effect */}
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out">
         {images.map((image, index) => (
@@ -59,23 +59,21 @@ const HeroSection = () => {
           </p>
 
           {/* Interactive Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
-              <span className="relative z-10">Check prices</span>
-              <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+          <div className="flex flex-col sm:flex-row justify-center w-full">
+            <button className="font-semibold px-8 py-3 bg-gradient-to-r from-green-400 via-green-500 to-green-600  text-white overflow-hidden transition-all duration-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none  focus:ring-green-300 shadow-lg shadow-green-500/50 rounded-lg text-sm me-2 mb-2">
+              Getting Started
             </button>
 
-            
-
-            <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
-              <span className="relative z-10">Join the Community</span>
-              <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            <button className="font-semibold px-8 py-3 bg-gradient-to-r from-green-400 via-green-500 to-green-600  text-white overflow-hidden transition-all duration-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none  focus:ring-green-300 shadow-lg shadow-green-500/50 rounded-lg text-sm me-2 mb-2">
+              Join the Community
             </button>
+
+            {/*
 
             <button className="relative px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg overflow-hidden transition-all duration-500 hover:text-white hover:bg-transparent hover:ring-2 hover:ring-white hover:ring-offset-2">
               <span className="relative z-10">Explore</span>
               <span className="absolute inset-0 bg-purple-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-            </button>
+            </button>*/}
           </div>
         </div>
       </div>

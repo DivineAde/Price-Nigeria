@@ -12,6 +12,7 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/24/solid";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import Link from "next/link";
 
 const Navbar = () => {
@@ -109,10 +110,10 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 h-16">
+      <header className="fixed left-0 right-0 z-50">
         {/* Glassmorphism Background */}
-        <div className="backdrop-blur-md bg-white/80 shadow-md">
-          <nav className="container mx-auto px-4 py-[16px] flex items-center justify-between">
+        <div className="backdrop-blur-md bg-white/80 shadow-lg rounded-full my-2 mx-auto w-5/6">
+          <nav className="container mx-auto px-6 py-2 flex items-center justify-between">
             <a href="/" className="text-xl font-bold text-green-800">
               Price.ng
             </a>
@@ -129,7 +130,7 @@ const Navbar = () => {
                   <div className="flex items-center space-x-1 p-2 hover:bg-gray-100 transition-colors duration-200 rounded-md">
                     <a
                       href={`/dashboard/${item}`}
-                      className="text-gray-600 hover:text-gray-800"
+                      className="text-gray-600 hover:text-gray-800 text-md"
                     >
                       {item.charAt(0).toUpperCase() + item.slice(1)}
                     </a>
@@ -208,7 +209,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-transparent h-screen backdrop-blur-md shadow-lg">
+          <div className="md:hidden bg-white w-full h-screen backdrop-blur-md shadow-lg">
             <div className="px-4 pt-2 pb-4 space-y-2">
               {Object.keys(dropdownContent).map((item) => (
                 <a
