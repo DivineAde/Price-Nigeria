@@ -146,7 +146,7 @@ const BlogPost = () => {
         {/* Back Button */}
         <Link
           href="/"
-          className="inline-flex items-center text-green-600 hover:text-green-800 transition-colors duration-300"
+          className="inline-flex items-center text-green-600 hover:text-green-800 transition-colors duration-300 mt-6"
         >
           ← Back to Blog
         </Link>
