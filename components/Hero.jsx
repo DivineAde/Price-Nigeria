@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const images = ["/pexels-heftiba-940302.jpg", "/pexels-ifreestock-566888.jpg"];
+const images = ["/pexels-heftiba-940302.jpg", "/pexels-ifreestock-566888.jpg", "/pexels-picjumbo-com-55570-196643.jpg"];
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,7 +53,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg md:text-xl text-gray-200 mb-8 font-bold animate-fade-in-up delay-200">
+          <p className="text-lg md:text-xl text-slate-50 mb-8 font-bold animate-fade-in-up delay-200">
             Whether you're looking to check prices, join a vibrant community, or
             list your own offerings, we've got you covered.
           </p>

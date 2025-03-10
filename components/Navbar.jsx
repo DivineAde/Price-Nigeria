@@ -65,12 +65,12 @@ const Navbar = () => {
 
   const dropdownContent = {
     prices: ["Price Trends", "Price Alerts", "Price Comparisons"],
-    forum: ["Latest Discussions", "Popular Topics", "Ask a Question"],
+    categories: ["Food Cupboard", "Fruits", "Drinks", "Household", "Toiletries and cleaning"],
     listings: ["New Listings", "Top Deals", "Featured Products"],
-    analytics: ["Market Trends", "Sales Analytics", "User Insights"],
+    forum: ["Latest Discussions", "Popular Topics", "Ask a Question"],
   };
 
-  const showChevronItems = ["prices", "forum", "listings"];
+  const showChevronItems = ["prices", "categories", "listing", "listings"];
 
   const SearchModal = ({ onClose }) => {
     return (
@@ -130,7 +130,7 @@ const Navbar = () => {
                       href={`/dashboard/${item}`}
                       className="text-gray-600 hover:text-gray-800 text-md"
                     >
-                      {item.charAt(0).toLowerCase() + item.slice(1)}
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
                     </a>
                     {showChevronItems.includes(item) && (
                       <ChevronDownIcon
