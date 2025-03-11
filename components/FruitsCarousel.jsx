@@ -10,7 +10,7 @@ const TWEEN_FACTOR_BASE = 0.52;
 const numberWithinRange = (number, min, max) =>
   Math.min(Math.max(number, min), max);
 
-const FruitsDrinksCarousel = ({ items }) => {
+const FruitsCarousel = ({ items }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const tweenFactor = useRef(0);
   const tweenNodes = useRef([]);
@@ -99,17 +99,19 @@ const FruitsDrinksCarousel = ({ items }) => {
         <div className="embla__container">
           {items.map((item, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__content shadow-lg w-[300px]">
-              <div className="w-full h-48 overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-full object-contain"
-              />
-            </div>
+              <div className="embla__slide__content shadow-lg w-[300px] p-4 rounded-lg">
+                <div className="w-full h-48 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div className="mt-4">
                   <h3 className="text-xl font-semibold">{item.name}</h3>
-                  <p className="text-gray-600"> &#8358;{item.price}</p>
+                  <p className="text-gray-600">&#8358;{item.price}</p>
+                  <p className="text-sm text-gray-500">Weight: {item.weight}</p>
+                  <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
                   <button
                     onClick={() => addToFavorites(item)}
                     className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
@@ -145,4 +147,4 @@ const FruitsDrinksCarousel = ({ items }) => {
   );
 };
 
-export default FruitsDrinksCarousel;
+export default FruitsCarousel;
