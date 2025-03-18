@@ -1,150 +1,188 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import { NextButton, PrevButton, usePrevNextButtons } from './EmblaButton';
-import { DotButton, useDotButton } from './EmblaCarouselArrow';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, Scrollbar } from "swiper/modules";
 
-const TWEEN_FACTOR_BASE = 0.52;
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/navigation";
 
-const numberWithinRange = (number, min, max) =>
-  Math.min(Math.max(number, min), max);
+const fruits = [
+  {
+    name: "Fresh Apples",
+    size: "1kg",
+    price: "$4.00",
+    discountedPrice: "$2.50",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "38% OFF",
+    description: "Crisp and juicy, perfect for snacking or baking.",
+  },
+  {
+    name: "Organic Bananas",
+    size: "1kg",
+    price: "$3.00",
+    discountedPrice: "$2.00",
+    image: "/pepper.avif",
+    hotDeal: false,
+    discountPercent: "",
+    description: "Naturally sweet and packed with potassium.",
+  },
+  {
+    name: "Sweet Oranges",
+    size: "1kg",
+    price: "$5.00",
+    discountedPrice: "$3.50",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "30% OFF",
+    description: "Vitamin C-rich and refreshingly tangy.",
+  },
+  {
+    name: "Ripe Mangoes",
+    size: "1kg",
+    price: "$6.00",
+    discountedPrice: "$4.00",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "33% OFF",
+    description: "The king of fruits, sweet and succulent.",
+  },
+  {
+    name: "Golden Pineapple",
+    size: "1pc",
+    price: "$3.50",
+    discountedPrice: "$2.50",
+    image: "/pepper.avif",
+    hotDeal: false,
+    discountPercent: "",
+    description: "Tropical and tangy, great for desserts.",
+  },
+  {
+    name: "Fresh Strawberries",
+    size: "500g",
+    price: "$7.00",
+    discountedPrice: "$5.00",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "29% OFF",
+    description: "Sweet and aromatic, perfect for smoothies.",
+  },
+  {
+    name: "Juicy Grapes",
+    size: "1kg",
+    price: "$8.00",
+    discountedPrice: "$6.00",
+    image: "/pepper.avif",
+    hotDeal: false,
+    discountPercent: "",
+    description: "Bursting with flavor, great for snacking.",
+  },
+  {
+    name: "Sweet Watermelon",
+    size: "1pc",
+    price: "$10.00",
+    discountedPrice: "$7.00",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "30% OFF",
+    description: "Hydrating and refreshing, perfect for summer.",
+  },
+  {
+    name: "Fresh Kiwi",
+    size: "500g",
+    price: "$6.00",
+    discountedPrice: "$4.50",
+    image: "/pepper.avif",
+    hotDeal: false,
+    discountPercent: "",
+    description: "Tart and tangy, packed with nutrients.",
+  },
+  {
+    name: "Sweet Peaches",
+    size: "1kg",
+    price: "$5.50",
+    discountedPrice: "$4.00",
+    image: "/pepper.avif",
+    hotDeal: true,
+    discountPercent: "27% OFF",
+    description: "Soft, juicy, and perfect for desserts.",
+  },
+];
 
-const FruitsCarousel = ({ items }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel();
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef([]);
-
-  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
-
-  const [favorites, setFavorites] = useState([]);
-
-  const addToFavorites = (item) => {
-    setFavorites((prev) => [...prev, item]);
-  };
-
-  const setTweenNodes = useCallback((emblaApi) => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__slide__content');
-    });
-  }, []);
-
-  const setTweenFactor = useCallback((emblaApi) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
-
-  const tweenScale = useCallback((emblaApi, eventName) => {
-    const engine = emblaApi.internalEngine();
-    const scrollProgress = emblaApi.scrollProgress();
-    const slidesInView = emblaApi.slidesInView();
-    const isScrollEvent = eventName === 'scroll';
-
-    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-      let diffToTarget = scrollSnap - scrollProgress;
-      const slidesInSnap = engine.slideRegistry[snapIndex];
-
-      slidesInSnap.forEach((slideIndex) => {
-        if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
-
-        if (engine.options.loop) {
-          engine.slideLooper.loopPoints.forEach((loopItem) => {
-            const target = loopItem.target();
-
-            if (slideIndex === loopItem.index && target !== 0) {
-              const sign = Math.sign(target);
-
-              if (sign === -1) {
-                diffToTarget = scrollSnap - (1 + scrollProgress);
-              }
-              if (sign === 1) {
-                diffToTarget = scrollSnap + (1 - scrollProgress);
-              }
-            }
-          });
-        }
-
-        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-        const scale = numberWithinRange(tweenValue, 0, 1).toString();
-        const tweenNode = tweenNodes.current[slideIndex];
-        tweenNode.style.transform = `scale(${scale})`;
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenScale(emblaApi);
-
-    emblaApi
-      .on('reInit', setTweenNodes)
-      .on('reInit', setTweenFactor)
-      .on('reInit', tweenScale)
-      .on('scroll', tweenScale)
-      .on('slideFocus', tweenScale);
-  }, [emblaApi, tweenScale]);
-
+const FruitSwiper = () => {
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {items.map((item, index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__slide__content shadow-lg w-[300px] p-4 rounded-lg">
-                <div className="w-full h-48 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-contain"
-                  />
+    <div className="container mx-auto px-4 py-8 my-6">
+      <h2 className="text-3xl font-bold text-center mb-8">
+        Fresh Fruits for You
+      </h2>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
+        navigation
+        scrollbar={{
+          draggable: true,
+        }}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+        }}
+        modules={[Navigation, Scrollbar]}
+        className="mySwiper"
+      >
+        {fruits.map((fruit, index) => (
+          <SwiperSlide key={index}>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden relative my-8 transition-transform transform hover:scale-105 hover:shadow-xl">
+              {fruit.hotDeal && (
+                <div className="absolute top-2 right-2 bg-red-600 text-white text-sm px-3 py-1 rounded-full z-10">
+                  Hot Deal: {fruit.discountPercent}
                 </div>
-                <div className="mt-4">
-                  <h3 className="text-xl font-semibold">{item.name}</h3>
-                  <p className="text-gray-600">&#8358;{item.price}</p>
-                  <p className="text-sm text-gray-500">Weight: {item.weight}</p>
-                  <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
-                  <button
-                    onClick={() => addToFavorites(item)}
-                    className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-                  >
-                    Add to Favorites
-                  </button>
+              )}
+              <div className="w-full h-48 overflow-hidden">
+                <img
+                  src={fruit.image}
+                  alt={fruit.name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold mb-2">
+                  {fruit.name} - <span>{fruit.size}</span>
+                </h3>
+                <p className="text-gray-600 text-sm">{fruit.description}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500 line-through">
+                    {fruit.price}
+                  </span>
+                  <span className="text-green-600 font-bold text-xl">
+                    {fruit.discountedPrice}
+                  </span>
                 </div>
+                {/* <button className="mt-4 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                  Add to Cart
+                </button>*/}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="embla__controls">
-        <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : ''
-              )}
-            />
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
 
-export default FruitsCarousel;
+export default FruitSwiper;
