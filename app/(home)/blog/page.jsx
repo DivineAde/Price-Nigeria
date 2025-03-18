@@ -141,7 +141,7 @@ const BlogPage = () => {
         <div className="max-w-[85rem] mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <span className="inline-block px-3 py-1 text-xs font-medium bg-green-800 bg-opacity-30 rounded-full mb-4">
+              <span className="inline-block px-3 py-1 text-xs font-medium bg-green-800 bg-opacity-30 rounded-full mt-8 md:mt-1  mb-4">
                 Featured Post
               </span>
               <h1 className="text-3xl md:text-4xl font-bold mb-4">{featuredPost.title}</h1>

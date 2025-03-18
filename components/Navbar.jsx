@@ -93,7 +93,7 @@ const Navbar = () => {
     {
       id: "category",
       label: "Categories",
-      dropdown: ["Food Cupboard", "Fruits", "Drinks", "Household", "Toiletries and cleaning"],
+      dropdown: ["Food Cupboard", "Fresh Fruits", "Drinks", "Household", "Toiletries and cleaning"],
       icon: <BookmarkIcon className="size-4" />,
     },
     {
@@ -367,9 +367,9 @@ const Navbar = () => {
                     {item.dropdown.map((subItem) => (
                       <Link
                         key={subItem}
-                        href={`/dashboard/${item.id}/${subItem
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
+                        href={`/${item.id}/${subItem
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}`}
                         className="block py-2 text-gray-600 hover:text-green-700"
                         onClick={() => setIsOpen(false)}
                       >

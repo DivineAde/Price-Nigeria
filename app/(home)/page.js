@@ -20,10 +20,10 @@ export default function Home() {
       <FruitSwiper />
       <LocationMapComponent />
       <LocationPriceComparison />
-      <AboutSection />
+    {/*<AboutSection />
       <div className="bg-gray-100">
         <Testimonials />
-      </div>
+      </div>*/}
     </div>
   );
 }

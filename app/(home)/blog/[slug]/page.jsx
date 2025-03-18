@@ -132,7 +132,7 @@ const BlogPost = () => {
       author: {
         name: "Emily Johnson",
         bio: "Emily is a food industry analyst with a focus on sustainability and emerging trends.",
-        avatar: "/emily-johnson-avatar.jpg",
+        avatar: "/Frame 1000003208 (2).png",
       },
       tags: ["Plant-Based", "Sustainability", "Food Trends"],
     },
@@ -173,7 +173,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* Hero Section with Full-width Image */}
-      <div className="relative w-full h-72 md:h-96 lg:h-[500px] overflow-hidden">
+      <div className="relative w-full h-96 lg:h-[500px] overflow-hidden">
         <img
           src={post.image}
           alt={post.title}
@@ -190,7 +190,7 @@ const BlogPost = () => {
           <span className="text-sm md:text-base bg-green-600 text-white px-3 py-1 rounded-full inline-block mb-3">
             {post.category}
           </span>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 max-w-4xl">
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white mb-4 max-w-4xl">
             {post.title}
           </h1>
           <div className="flex items-center space-x-4 text-white">

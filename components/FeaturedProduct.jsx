@@ -145,7 +145,7 @@ const FoodCard = ({ item, addToCart, addToFavorites, favorites }) => {
   const isFavorite = favorites.includes(item.id);
   
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col relative">
       {/* Discount badge */}
       {discountPercentage > 0 && (
         <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10">

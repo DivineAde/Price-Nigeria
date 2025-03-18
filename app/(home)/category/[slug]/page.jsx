@@ -265,7 +265,7 @@ const CategorySlugPage = () => {
           <ArchiveBoxIcon className="h-16 w-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Category Not Found</h1>
           <p className="text-gray-500 mb-6">The category you're looking for doesn't exist or has been removed.</p>
-          <Link href="/categories" className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors">
+          <Link href="/category" className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors">
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
             Back to Categories
           </Link>
@@ -277,7 +277,7 @@ const CategorySlugPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header with Category Banner */}
-      <div className="relative h-80">
+      <div className="relative h-96">
         <div className="absolute inset-0">
           <Image
             src={category.image}
@@ -289,7 +289,7 @@ const CategorySlugPage = () => {
         </div>
         
         <div className="relative container mx-auto max-w-7xl px-6 py-20">
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mt-1 mb-4">
             <Link href="/" className="text-green-200 hover:text-white text-sm">
               Home
             </Link>

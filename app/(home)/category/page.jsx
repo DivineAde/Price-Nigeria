@@ -21,7 +21,7 @@ import {
 const CategoryCard = ({ category }) => {
   return (
     <Link 
-      href={`/categories/${category.slug}`}
+      href={`/category/${category.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
     >
       <div className="relative h-48 w-full overflow-hidden">
@@ -208,7 +208,7 @@ const CategoryPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-green-800 to-green-600 pt-16 pb-12 px-6">
+      <div className="bg-gradient-to-r from-green-800 to-green-600 pt-20 pb-12 px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center gap-2 mt-2 mb-4">
             <Link href="/" className="text-green-200 hover:text-white text-sm">
