@@ -54,7 +54,7 @@ const Navbar = () => {
       ) {
         setIsSearchModalOpen(false);
       }
-      
+
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
@@ -65,7 +65,7 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -93,7 +93,13 @@ const Navbar = () => {
     {
       id: "category",
       label: "Categories",
-      dropdown: ["Food Cupboard", "Fresh Fruits", "Drinks", "Household", "Toiletries and cleaning"],
+      dropdown: [
+        "Food Cupboard",
+        "Fresh Fruits",
+        "Drinks",
+        "Household",
+        "Toiletries and cleaning",
+      ],
       icon: <BookmarkIcon className="size-4" />,
     },
     {
@@ -112,17 +118,17 @@ const Navbar = () => {
 
   const SearchModal = ({ onClose }) => {
     const [searchQuery, setSearchQuery] = useState("");
-    
+
     const handleSearch = (e) => {
       e.preventDefault();
       // Handle search logic here
       console.log("Searching for:", searchQuery);
       onClose();
     };
-    
+
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div 
+        <div
           ref={searchInputRef}
           className="bg-white p-6 rounded-xl shadow-2xl w-full max-w-lg mx-4 transform transition-all duration-300 ease-in-out"
         >
@@ -156,10 +162,12 @@ const Navbar = () => {
               </button>
             </div>
           </form>
-          
+
           {/* Quick search suggestions */}
           <div className="mt-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Popular searches</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">
+              Popular searches
+            </h3>
             <div className="flex flex-wrap gap-2">
               {["Rice", "Indomie", "Milk", "Sugar", "Bread"].map((term) => (
                 <button
@@ -184,10 +192,9 @@ const Navbar = () => {
         <div className="backdrop-blur-md bg-white/90 shadow-md border-b border-gray-100 my-2 mx-auto w-11/12 lg:w-5/6 rounded-2xl">
           <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="bg-green-600 text-white rounded-lg p-1">
-                <ShoppingBagIcon className="size-6" />
-              </div>
-              <span className="text-xl font-bold text-green-800">Price.ng</span>
+              <span className="text-xl font-bold text-green-800">
+                Price.ng
+              </span>
             </Link>
 
             {/* Desktop Menu */}
@@ -243,8 +250,8 @@ const Navbar = () => {
 
             {/* Icons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={toggleSearchInput}
                 aria-label="Search"
@@ -254,18 +261,15 @@ const Navbar = () => {
               </Button>
               <Link href="/login">
                 <Avatar className="border-2 border-gray-200 hover:border-green-200 transition-all cursor-pointer">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="User"
-                  />
+                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
                   <AvatarFallback className="bg-green-100 text-green-800">
                     CN
                   </AvatarFallback>
                 </Avatar>
               </Link>
               <Link href="/bookmark" className="relative">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="icon"
                   className="rounded-lg hover:bg-gray-100 text-gray-700"
                 >
@@ -281,8 +285,8 @@ const Navbar = () => {
 
             {/* Mobile Menu Toggle */}
             <div className="md:hidden flex items-center gap-3">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={toggleSearchInput}
                 aria-label="Search"
@@ -291,8 +295,8 @@ const Navbar = () => {
                 <MagnifyingGlassIcon className="size-5" />
               </Button>
               <Link href="/bookmark" className="relative">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="icon"
                   className="rounded-lg hover:bg-gray-100 text-gray-700"
                 >
@@ -344,7 +348,7 @@ const Navbar = () => {
               <XMarkIcon className="size-5" />
             </Button>
           </div>
-          
+
           <div className="py-4">
             {navigationItems.map((item) => (
               <div key={item.id} className="px-4 py-2">
@@ -361,15 +365,15 @@ const Navbar = () => {
                     <ChevronDownIcon className="size-4 text-gray-500" />
                   )}
                 </Link>
-                
+
                 {item.dropdown && (
                   <div className="ml-8 mt-2 space-y-1">
                     {item.dropdown.map((subItem) => (
                       <Link
                         key={subItem}
                         href={`/${item.id}/${subItem
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}`}
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
                         className="block py-2 text-gray-600 hover:text-green-700"
                         onClick={() => setIsOpen(false)}
                       >
@@ -381,37 +385,25 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100">
             <div className="flex items-center gap-4">
               <Link href="/login" onClick={() => setIsOpen(false)}>
                 <Avatar className="border-2 border-gray-200">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="User"
-                  />
+                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
                   <AvatarFallback className="bg-green-100 text-green-800">
                     CN
                   </AvatarFallback>
                 </Avatar>
               </Link>
-              <div>
-                <p className="font-medium">Guest User</p>
-                <Link 
-                  href="/login" 
-                  className="text-sm text-green-600 hover:text-green-800"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign In / Register
-                </Link>
-              </div>
+              
             </div>
           </div>
         </div>
-        
+
         {/* Overlay for mobile menu */}
         {isOpen && (
-          <div 
+          <div
             className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
             onClick={toggleMenu}
           ></div>
@@ -422,8 +414,6 @@ const Navbar = () => {
       {isSearchModalOpen && (
         <SearchModal onClose={() => setIsSearchModalOpen(false)} />
       )}
-      
-     
     </>
   );
 };

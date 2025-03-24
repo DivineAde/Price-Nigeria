@@ -294,7 +294,7 @@ const CategorySlugPage = () => {
               Home
             </Link>
             <ChevronRightIcon className="h-3 w-3 text-green-200" />
-            <Link href="/categories" className="text-green-200 hover:text-white text-sm">
+            <Link href="/category" className="text-green-200 hover:text-white text-sm">
               Categories
             </Link>
             <ChevronRightIcon className="h-3 w-3 text-green-200" />

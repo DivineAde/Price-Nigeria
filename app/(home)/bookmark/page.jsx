@@ -18,7 +18,7 @@ const ShoppingCart = () => {
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         {cart.length < 1 ? (
           <div className="flex flex-col items-center justify-center h-[60vh]">
-            <h1 className="text-2xl font-bold text-red-600">
+            <h1 className="text-2xl font-extrabold text-green-500">
               Bookmark is empty :(
             </h1>
             <Link

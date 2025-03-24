@@ -152,7 +152,7 @@ const BlogPost = () => {
             The article you're looking for doesn't seem to exist.
           </p>
           <Link
-            href="/"
+            href="/blog"
             className="px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors duration-300"
           >
             Return to Blog Home

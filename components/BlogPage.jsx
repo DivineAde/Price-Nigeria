@@ -1,6 +1,9 @@
 // components/BlogSection.js
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+} from "lucide-react";
 
 const BlogSection = () => {
   const posts = [
@@ -9,7 +12,8 @@ const BlogSection = () => {
       slug: "how-weather-patterns-impact-food-prices",
       category: "Market Trends",
       title: "How Weather Patterns Are Impacting Global Food Prices",
-      description: "Weather patterns have a profound impact on global food prices...",
+      description:
+        "Weather patterns have a profound impact on global food prices...",
       date: "October 10, 2023",
       image: "/pexels-heftiba-940302.jpg",
       author: {
@@ -23,7 +27,8 @@ const BlogSection = () => {
       slug: "smart-shopping-tips-to-save-money",
       category: "Consumer Tips",
       title: "10 Smart Shopping Tips to Save Money on Groceries",
-      description: "Grocery shopping can be expensive, but with a few smart strategies...",
+      description:
+        "Grocery shopping can be expensive, but with a few smart strategies...",
       date: "October 8, 2023",
       image: "/pexels-heftiba-940302.jpg",
       author: {
@@ -36,8 +41,10 @@ const BlogSection = () => {
       id: 3,
       slug: "rise-of-plant-based-diets",
       category: "Food Industry",
-      title: "The Rise of Plant-Based Diets and Their Impact on the Food Industry",
-      description: "In recent years, plant-based diets have surged in popularity...",
+      title:
+        "The Rise of Plant-Based Diets and Their Impact on the Food Industry",
+      description:
+        "In recent years, plant-based diets have surged in popularity...",
       date: "October 15, 2023",
       image: "/pexels-heftiba-940302.jpg",
       author: {
@@ -52,10 +59,10 @@ const BlogSection = () => {
     <div className="min-h-screen bg-gray-100 py-12">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold">Latest Blogs</h1>
+          <h1 className="text-2xl font-bold">Latest Blogs</h1>
 
-          <Link href="/blog" className="text-blue-600 hover:underline">
-           View more
+          <Link href="/blog" className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
+               View All <ArrowRight className="w-4 h-4 ml-1" />
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -89,7 +96,9 @@ const BlogSection = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold">{post.author.name}</p>
+                      <p className="text-sm font-semibold">
+                        {post.author.name}
+                      </p>
                       <p className="text-xs text-gray-300">{post.date}</p>
                     </div>
                   </div>

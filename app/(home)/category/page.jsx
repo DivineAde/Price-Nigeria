@@ -4,23 +4,23 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ChevronRightIcon, 
+import {
+  ChevronRightIcon,
   MagnifyingGlassIcon,
   ArrowRightIcon,
-  StarIcon
+  StarIcon,
 } from "@heroicons/react/24/solid";
-import { 
-  ShoppingBagIcon, 
-  HeartIcon, 
+import {
+  ShoppingBagIcon,
+  HeartIcon,
   TruckIcon,
   TagIcon,
-  ShieldCheckIcon
+  ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 
 const CategoryCard = ({ category }) => {
   return (
-    <Link 
+    <Link
       href={`/category/${category.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
     >
@@ -37,21 +37,23 @@ const CategoryCard = ({ category }) => {
           <p className="text-sm text-white/80">{category.itemCount} items</p>
         </div>
       </div>
-      
+
       <div className="p-4 flex-grow">
         <div className="mb-3 flex flex-wrap gap-2">
           {category.tags.map((tag, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className="inline-block text-xs px-2 py-1 rounded-full bg-green-50 text-green-700"
             >
               {tag}
             </span>
           ))}
         </div>
-        <p className="text-sm text-gray-500 line-clamp-2">{category.description}</p>
+        <p className="text-sm text-gray-500 line-clamp-2">
+          {category.description}
+        </p>
       </div>
-      
+
       <div className="p-4 pt-0 flex items-center justify-between mt-auto">
         <div className="flex items-center gap-1">
           <StarIcon className="h-4 w-4 text-yellow-400" />
@@ -81,8 +83,10 @@ const FeaturedCategory = ({ category }) => {
           Featured
         </span>
         <h2 className="text-3xl font-bold text-white mb-2">{category.name}</h2>
-        <p className="text-white/80 mb-4 line-clamp-2">{category.description}</p>
-        <Link 
+        <p className="text-white/80 mb-4 line-clamp-2">
+          {category.description}
+        </p>
+        <Link
           href={`/category/${category.slug}`}
           className="inline-flex items-center px-4 py-2 bg-white text-green-700 rounded-lg font-medium hover:bg-green-50 transition-colors"
         >
@@ -97,112 +101,122 @@ const FeaturedCategory = ({ category }) => {
 const CategoryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
-  
+
   // Sample category data
   const categories = [
     {
       id: 1,
       name: "Food Cupboard",
       slug: "food-cupboard",
-      description: "Essential groceries, canned goods, pasta, rice, and other pantry staples for your everyday cooking needs.",
+      description:
+        "Essential groceries, canned goods, pasta, rice, and other pantry staples for your everyday cooking needs.",
       image: "/pexels-heftiba-940302.jpg",
       itemCount: 342,
       tags: ["Groceries", "Essentials"],
       rating: 4.8,
-      featured: true
+      featured: true,
     },
     {
       id: 2,
       name: "Fresh Fruits",
       slug: "fresh-fruits",
-      description: "Fresh, seasonal fruits delivered from local farms and international sources.",
+      description:
+        "Fresh, seasonal fruits delivered from local farms and international sources.",
       image: "/fruits.jpg",
       itemCount: 124,
       tags: ["Fresh", "Organic"],
-      rating: 4.9
+      rating: 4.9,
     },
     {
       id: 3,
       name: "Beverages",
       slug: "beverages",
-      description: "Wide range of drinks including soft drinks, juices, water, and energy drinks.",
+      description:
+        "Wide range of drinks including soft drinks, juices, water, and energy drinks.",
       image: "/fruits.jpg",
       itemCount: 278,
       tags: ["Drinks", "Refreshments"],
-      rating: 4.6
+      rating: 4.6,
     },
     {
       id: 4,
       name: "Household",
       slug: "household",
-      description: "Everything you need to keep your home clean and maintained, from cleaning supplies to home improvement.",
+      description:
+        "Everything you need to keep your home clean and maintained, from cleaning supplies to home improvement.",
       image: "/fruits.jpg",
       itemCount: 455,
       tags: ["Home", "Essentials"],
-      rating: 4.5
+      rating: 4.5,
     },
     {
       id: 5,
       name: "Toiletries",
       slug: "toiletries",
-      description: "Personal care products including soaps, shampoos, toothpaste, and more.",
+      description:
+        "Personal care products including soaps, shampoos, toothpaste, and more.",
       image: "/fruits.jpg",
       itemCount: 387,
       tags: ["Personal Care", "Hygiene"],
-      rating: 4.7
+      rating: 4.7,
     },
     {
       id: 6,
       name: "Baby Products",
       slug: "baby-products",
-      description: "Everything for your little ones - from diapers and wipes to baby food and toys.",
+      description:
+        "Everything for your little ones - from diapers and wipes to baby food and toys.",
       image: "/fruits.jpg",
       itemCount: 213,
       tags: ["Baby", "Care"],
-      rating: 4.8
+      rating: 4.8,
     },
     {
       id: 7,
       name: "Electronics",
       slug: "electronics",
-      description: "The latest in consumer electronics, gadgets, and accessories for your digital lifestyle.",
+      description:
+        "The latest in consumer electronics, gadgets, and accessories for your digital lifestyle.",
       image: "/fruits.jpg",
       itemCount: 192,
       tags: ["Tech", "Gadgets"],
-      rating: 4.6
+      rating: 4.6,
     },
     {
       id: 8,
       name: "Fresh Vegetables",
       slug: "fresh-vegetables",
-      description: "Fresh vegetables sourced from local farms and suppliers with quality you can trust.",
+      description:
+        "Fresh vegetables sourced from local farms and suppliers with quality you can trust.",
       image: "/fruits.jpg",
       itemCount: 156,
       tags: ["Fresh", "Organic"],
-      rating: 4.7
-    }
+      rating: 4.7,
+    },
   ];
-  
+
   // Filter categories based on search and active filter
   const filteredCategories = categories.filter((category) => {
-    const matchesSearch = category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          category.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
+    const matchesSearch =
+      category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      category.description.toLowerCase().includes(searchQuery.toLowerCase());
+
     if (activeFilter === "all") return matchesSearch;
     if (activeFilter === "featured") return matchesSearch && category.featured;
-    if (activeFilter === "popular") return matchesSearch && category.rating >= 4.7;
-    
+    if (activeFilter === "popular")
+      return matchesSearch && category.rating >= 4.7;
+
     return matchesSearch;
   });
-  
+
   // Featured category
-  const featuredCategory = categories.find(cat => cat.featured);
-  
+  const featuredCategory = categories.find((cat) => cat.featured);
+
   // Filter buttons data
   const filters = [
     { id: "all", label: "All Categories" },
     { id: "featured", label: "Featured" },
-    { id: "popular", label: "Popular" }
+    { id: "popular", label: "Popular" },
   ];
 
   return (
@@ -217,11 +231,14 @@ const CategoryPage = () => {
             <ChevronRightIcon className="h-3 w-3 text-green-200" />
             <span className="text-white text-sm font-medium">Categories</span>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-4">Shop By Category</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Shop By Category
+          </h1>
           <p className="text-green-100 text-lg max-w-2xl mb-8">
-            Browse our wide range of products organized by category to find exactly what you need at the best prices.
+            Browse our wide range of products organized by category to find
+            exactly what you need at the best prices.
           </p>
-          
+
           {/* Search Bar */}
           <div className="relative max-w-2xl">
             <input
@@ -235,7 +252,7 @@ const CategoryPage = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="container mx-auto max-w-7xl px-6 py-12">
         {/* Featured Category Banner */}
         {featuredCategory && (
@@ -243,7 +260,7 @@ const CategoryPage = () => {
             <FeaturedCategory category={featuredCategory} />
           </div>
         )}
-        
+
         {/* Why Shop With Us */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm">
@@ -261,7 +278,9 @@ const CategoryPage = () => {
             </div>
             <div>
               <h3 className="font-medium">Fast Delivery</h3>
-              <p className="text-sm text-gray-500">Same-day delivery available</p>
+              <p className="text-sm text-gray-500">
+                Same-day delivery available
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm">
@@ -270,7 +289,9 @@ const CategoryPage = () => {
             </div>
             <div>
               <h3 className="font-medium">Best Prices</h3>
-              <p className="text-sm text-gray-500">Price comparison on all items</p>
+              <p className="text-sm text-gray-500">
+                Price comparison on all items
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm">
@@ -283,7 +304,7 @@ const CategoryPage = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Filter Buttons */}
         <div className="flex flex-wrap items-center gap-3 mb-8">
           {filters.map((filter) => (
@@ -303,7 +324,7 @@ const CategoryPage = () => {
             Showing {filteredCategories.length} categories
           </span>
         </div>
-        
+
         {/* Categories Grid */}
         {filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -314,7 +335,9 @@ const CategoryPage = () => {
         ) : (
           <div className="bg-white rounded-xl p-8 text-center">
             <ShoppingBagIcon className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-medium text-gray-800 mb-2">No categories found</h3>
+            <h3 className="text-xl font-medium text-gray-800 mb-2">
+              No categories found
+            </h3>
             <p className="text-gray-500 mb-4">
               We couldn't find any categories matching your search criteria.
             </p>

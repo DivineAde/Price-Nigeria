@@ -15,12 +15,12 @@ export default function Home() {
       <HeroSection />
       <BlogSection />
       <FoodCollection />
-      <NigerianAnalyticsSection  />
+      <NigerianAnalyticsSection />
       <Ingredients />
       <FruitSwiper />
       <LocationMapComponent />
       <LocationPriceComparison />
-    {/*<AboutSection />
+      {/*<AboutSection />
       <div className="bg-gray-100">
         <Testimonials />
       </div>*/}
