@@ -1,9 +1,7 @@
 // components/BlogSection.js
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 const BlogSection = () => {
   const posts = [
@@ -15,6 +13,7 @@ const BlogSection = () => {
       description:
         "Weather patterns have a profound impact on global food prices...",
       date: "October 10, 2023",
+      readTime: "5 min read",
       image: "/pexels-heftiba-940302.jpg",
       author: {
         name: "John Doe",
@@ -30,6 +29,7 @@ const BlogSection = () => {
       description:
         "Grocery shopping can be expensive, but with a few smart strategies...",
       date: "October 8, 2023",
+      readTime: "4 min read",
       image: "/pexels-heftiba-940302.jpg",
       author: {
         name: "Jane Smith",
@@ -46,69 +46,102 @@ const BlogSection = () => {
       description:
         "In recent years, plant-based diets have surged in popularity...",
       date: "October 15, 2023",
+      readTime: "6 min read",
       image: "/pexels-heftiba-940302.jpg",
       author: {
         name: "Emily Johnson",
         bio: "Emily is a food industry analyst with a focus on sustainability...",
-        avatar: "/emily-johnson-avatar.jpg",
+        avatar: "/Frame 1000003208 (3).png",
       },
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Latest Blogs</h1>
-
-          <Link href="/blog" className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
-               View All <ArrowRight className="w-4 h-4 ml-1" />
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="flex flex-col md:flex-row items-center justify-between mb-12">
+          <div>
+            <span className="text-blue-600 font-medium text-sm uppercase tracking-wider">Our Blog</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 text-gray-900">Latest Insights</h2>
+          </div>
+          <Link 
+            href="/blog" 
+            className="mt-4 md:mt-0 group flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300"
+          >
+            <span>View All Articles</span>
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.slug}`}>
-              <div className="relative h-96 overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                {/* Background Image */}
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="z-0"
-                />
-
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gray-700/50 group-hover:bg-black/70 transition-all duration-300"></div>
-
-                {/* Content */}
-                <div className="absolute inset-0 z-10 p-6 flex flex-col justify-end text-white">
-                  <h2 className="text-xl font-bold mb-2">{post.title}</h2>
-                  <p className="text-sm mb-4">{post.description}</p>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden">
-                      <Image
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        width={40}
-                        height={40}
-                        className="object-cover"
-                      />
+            <article 
+              key={post.id} 
+              className="flex flex-col rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 h-full"
+            >
+              {/* Image Container */}
+              <div className="relative h-52 w-full overflow-hidden">
+                <Link href={`/blog/${post.slug}`}>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="transition-transform duration-500 hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                      {post.category}
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold">
-                        {post.author.name}
-                      </p>
-                      <p className="text-xs text-gray-300">{post.date}</p>
-                    </div>
+                  </div>
+                </Link>
+              </div>
+              
+              {/* Content */}
+              <div className="flex flex-col flex-grow p-6">
+                <Link href={`/blog/${post.slug}`} className="group">
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
+                </Link>
+                <p className="text-gray-600 mb-4 text-sm line-clamp-2">{post.description}</p>
+                
+                {/* Meta Info */}
+                <div className="flex items-center text-xs text-gray-500 mt-auto mb-4">
+                  <div className="flex items-center">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span>{post.date}</span>
+                  </div>
+                  <div className="mx-2">•</div>
+                  <div className="flex items-center">
+                    <Clock className="w-3 h-3 mr-1" />
+                    <span>{post.readTime}</span>
+                  </div>
+                </div>
+                
+                {/* Author */}
+                <div className="flex items-center pt-4 border-t border-gray-100">
+                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src={post.author.avatar}
+                      alt={post.author.name}
+                      width={32}
+                      height={32}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-gray-900">
+                      {post.author.name}
+                    </p>
                   </div>
                 </div>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

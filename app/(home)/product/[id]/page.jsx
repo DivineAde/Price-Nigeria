@@ -6,14 +6,14 @@ const ItemDetailsPage = () => {
   
   const item = {
     name: "Organic Black Beans",
-    image: "/images/black-beans.jpg", 
+    image: "/images/black-beans.jpg",
     description: "High-quality organic black beans, perfect for soups, salads, and more.",
-    currentPrice: "$2.99",
-    originalPrice: "$3.49",
+    currentPrice: "₦2.99",
+    originalPrice: "₦3.49",
     priceHistory: [
-      { date: "2023-10-01", price: "$3.49" },
-      { date: "2023-09-25", price: "$3.29" },
-      { date: "2023-09-15", price: "$2.99" },
+      { date: "2023-10-01", price: "₦3.49" },
+      { date: "2023-09-25", price: "₦3.29" },
+      { date: "2023-09-15", price: "₦2.99" },
     ],
   };
 

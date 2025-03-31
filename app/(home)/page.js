@@ -8,6 +8,7 @@ import NigerianAnalyticsSection from "@/components/AnalyticalComponents";
 import AboutSection from "@/components/AboutComponents";
 import LocationMapComponent from "@/components/LocationComponent";
 import LocationPriceComparison from "@/components/LocationComparison";
+import CommunityForum from  "@/components/CommunityForum"
 
 export default function Home() {
   return (
