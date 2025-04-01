@@ -1,67 +1,152 @@
+"use client"
+
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      // Here you would typically connect to your newsletter service
+      setSubscribed(true);
+      setEmail('');
+    }
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-green-800 text-white py-12 mt-20">
+    <footer className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12 mt-20">
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Logo and tagline section */}
+        <div className="flex flex-col items-center mb-8 text-center">
+          <h2 className="text-2xl font-bold mb-2">priceWatch</h2>
+          <p className="text-blue-200 max-w-xl">
+            Your trusted companion for price tracking and comparison in Nigeria, helping you make smarter purchasing decisions.
+          </p>
+        </div>
+
+        {/* Main footer content grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Column 1: About */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">About price.ng</h3>
-            <p className="text-sm text-slate-300">
-              price.ng is your trusted platform for comparing prices and finding the best deals on products and services in Nigeria.
+            <h3 className="text-lg font-semibold mb-4 text-blue-100">About Us</h3>
+            <p className="text-sm text-blue-200 mb-4">
+              priceWatch helps you monitor price changes and find the best deals on products across multiple online retailers in Nigeria.
             </p>
+            <div className="flex space-x-4 mt-4">
+              <Link href="https://facebook.com" className="text-blue-200 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.563V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                </svg>
+              </Link>
+              <Link href="https://twitter.com" className="text-blue-200 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm1.13 17.52h1.833L9.628 4.03H7.682z" />
+                </svg>
+              </Link>
+              <Link href="https://instagram.com" className="text-blue-200 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </Link>
+              <Link href="https://youtube.com" className="text-blue-200 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                </svg>
+              </Link>
+            </div>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Column 2: Product Categories */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-blue-100">Product Categories</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  About Us
+                <Link href="/category/food-cupboard" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Food Cupboard
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Contact Us
+                <Link href="/category/fresh-fruit" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Fresh Fruits
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Privacy Policy
+                <Link href="/category/drinks" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Beverages
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Terms of Service
+                <Link href="/category/household" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Household
+                </Link>
+              </li>
+              <li>
+                <Link href="/categories" className="text-sm font-medium text-white mt-3 inline-block hover:underline">
+                  View All Categories
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Categories */}
+          {/* Column 3: Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Categories</h3>
+            <h3 className="text-lg font-semibold mb-4 text-blue-100">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/electronics" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Protein
+                <Link href="/" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/fashion" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Carbonhydrates
+                <Link href="/" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  How It Works
                 </Link>
               </li>
               <li>
-                <Link href="/home-appliances" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Fruits
+                <Link href="/" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/health-beauty" className="text-sm text-gray-400 hover:text-white transition duration-300">
-                  Minerals
+                <Link href="/" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-sm text-blue-200 hover:text-white flex items-center transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -69,47 +154,63 @@ const Footer = () => {
 
           {/* Column 4: Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Get the latest updates on deals and offers straight to your inbox.
+            <h3 className="text-lg font-semibold mb-4 text-blue-100">Stay Updated</h3>
+            <p className="text-sm text-blue-200 mb-4">
+              Subscribe to receive price alerts and exclusive deals on your favorite products.
             </p>
-            <form className="flex flex-col space-y-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="p-2 rounded-md  text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300 font-bold"
-              >
-                Subscribe
-              </button>
-            </form>
+            {subscribed ? (
+              <div className="bg-blue-700 bg-opacity-50 p-4 rounded-lg text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mx-auto text-green-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-sm">Thanks for subscribing!</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full p-3 pl-10 rounded-lg text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 absolute left-3 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 px-4 rounded-lg transition duration-300 text-sm font-medium flex justify-center items-center"
+                >
+                  Subscribe for Price Alerts
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
-        {/* Bottom Section: Copyright and Social Media */}
-        <div className="border-t border-white mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} price.ng. All rights reserved.
-          </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href="https://facebook.com/price.ng" className="text-gray-400 hover:text-white transition duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.563V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-              </svg>
-            </Link>
-            <Link href="https://twitter.com/price.ng" className="text-gray-400 hover:text-white transition duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996-.747-.797-1.813-1.296-2.993-1.296-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.171-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.021-1.305-.206-1.86-.513v.052c0 1.988 1.415 3.647 3.293 4.023-.344.094-.707.144-1.08.144-.264 0-.52-.026-.77-.074.52 1.624 2.036 2.806 3.83 2.84-1.403 1.1-3.172 1.756-5.094 1.756-.332 0-.66-.02-.98-.058 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.253 11.675-11.675 0-.178-.004-.355-.012-.531.802-.58 1.497-1.304 2.047-2.128z" />
-              </svg>
-            </Link>
-            <Link href="https://instagram.com/price.ng" className="text-gray-400 hover:text-white transition duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </Link>
+        {/* Bottom Section: Copyright and additional links */}
+        <div className="border-t border-blue-700 mt-10 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-blue-300 mb-4 md:mb-0">
+              &copy; {currentYear} priceWatch. All rights reserved.
+            </p>
+            <div className="flex flex-wrap justify-center space-x-4">
+              <Link href="/terms" className="text-sm text-blue-300 hover:text-white transition-colors duration-300">
+                Terms of Service
+              </Link>
+              <Link href="/sitemap" className="text-sm text-blue-300 hover:text-white transition-colors duration-300">
+                Sitemap
+              </Link>
+              <Link href="/partners" className="text-sm text-blue-300 hover:text-white transition-colors duration-300">
+                Partners
+              </Link>
+            </div>
           </div>
         </div>
       </div>

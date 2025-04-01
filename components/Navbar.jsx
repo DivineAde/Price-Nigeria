@@ -14,9 +14,10 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
+import { useRouter } from "next/navigation"; // Added for navigation
 
 const Navbar = () => {
+  const router = useRouter(); // For programmatic navigation
   const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -121,9 +122,11 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
       e.preventDefault();
-      // Handle search logic here
-      console.log("Searching for:", searchQuery);
-      onClose();
+      // Redirect to search page with query parameter
+      if (searchQuery.trim()) {
+        router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+        onClose();
+      }
     };
 
     return (
@@ -172,7 +175,11 @@ const Navbar = () => {
               {["Rice", "Indomie", "Milk", "Sugar", "Bread"].map((term) => (
                 <button
                   key={term}
-                  onClick={() => setSearchQuery(term)}
+                  onClick={() => {
+                    setSearchQuery(term);
+                    router.push(`/search?q=${encodeURIComponent(term)}`);
+                    onClose();
+                  }}
                   className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors"
                 >
                   {term}
@@ -192,8 +199,8 @@ const Navbar = () => {
         <div className="backdrop-blur-md bg-white/90 shadow-md border-b border-gray-100 my-2 mx-auto w-11/12 lg:w-5/6 rounded-2xl">
           <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-green-800">
-                Price.ng
+              <span className="text-xl font-bold text-blue-900">
+                priceWatch
               </span>
             </Link>
 
@@ -396,7 +403,6 @@ const Navbar = () => {
                   </AvatarFallback>
                 </Avatar>
               </Link>
-              
             </div>
           </div>
         </div>

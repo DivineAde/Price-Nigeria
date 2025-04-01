@@ -105,17 +105,17 @@ const HeroSection = () => {
 
           {/* Interactive Buttons with improved design */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 w-full">
-            <button className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-full overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300">
+            <Link href={'/forum'} className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-full overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300">
               <span className="relative z-10 flex items-center">
-                Get Started
+                Join the community
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
-            </button>
+            </Link>
 
-            <button className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-green-500 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden hover:bg-white/20 transition-all duration-300">
-              <span className="relative z-10">Join the Community</span>
-            </button>
+            <Link href={'/'} className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-green-500 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden hover:bg-white/20 transition-all duration-300">
+              <span className="relative z-10">See Listing</span>
+            </Link>
           </div>
           
           {/* Scroll indicator 
