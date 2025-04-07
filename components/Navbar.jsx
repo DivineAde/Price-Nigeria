@@ -112,7 +112,7 @@ const Navbar = () => {
     {
       id: "forum",
       label: "Forum",
-      dropdown: ["Latest Discussions", "Popular Topics", "Ask a Question"],
+      dropdown: [""],
       icon: <UserIcon className="size-4" />,
     },
   ];
