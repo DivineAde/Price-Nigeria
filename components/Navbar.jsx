@@ -15,6 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // Added for navigation
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter(); // For programmatic navigation
@@ -199,9 +200,8 @@ const Navbar = () => {
         <div className="backdrop-blur-md bg-white/90 shadow-md border-b border-gray-100 my-2 mx-auto w-11/12 lg:w-5/6 rounded-2xl">
           <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-blue-900">
-                priceWatch
-              </span>
+              {/* Replace text with Image component */}
+              Price Paddi
             </Link>
 
             {/* Desktop Menu */}
